@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { execSync } from 'child_process';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import Logger from '../src/logger.js';
@@ -34,8 +35,27 @@ import { generateCommit } from '../src/api.js';
         ensureGitWorkspace(logger);
         const config = loadConfig(logger);
         logger.debug('Loaded config:', config);
-        const diff = getDiff(logger);
+        let diff = getDiff(logger);
         logger.debug('Git diff:', diff);
+        if (!diff.trim()) {
+          const { stageAll } = await inquirer.prompt({
+            name: 'stageAll',
+            type: 'confirm',
+            message: 'No staged changes detected. Stage all changes and continue?',
+            default: true
+          });
+          if (!stageAll) {
+            logger.warn('Commit aborted.');
+            process.exit(0);
+          }
+          execSync('git add -A', { stdio: 'inherit' });
+          diff = getDiff(logger);
+          logger.debug('Git diff after staging:', diff);
+          if (!diff.trim()) {
+            logger.info('No changes to commit after staging.');
+            process.exit(0);
+          }
+        }
         if (!diff.trim()) {
           logger.info('No changes detected.');
           process.exit(0);
