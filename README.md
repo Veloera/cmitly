@@ -27,10 +27,6 @@ cmitly
 
 - `cmitly init` Initialize cmitly configuration.
 
-## Configuration
-
-After initialization, customize settings in the generated `.cmitlyrc.json` file in your project root.
-
 ## Contributing
 
 Contributions welcome! Please open issues and submit pull requests.
