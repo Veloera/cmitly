@@ -1,6 +1,6 @@
 {
   "name": "cmitly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Commit message generator following Conventional Commits powered by AI",
   "main": "bin/cmitly.js",
   "type": "module",
