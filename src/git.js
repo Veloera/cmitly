@@ -11,7 +11,7 @@ export function ensureGitWorkspace(logger) {
 
 export function getDiff(logger) {
   try {
-    const diff = execSync('git diff', { encoding: 'utf-8' });
+    const diff = execSync('git diff HEAD', { encoding: 'utf-8' });
     return diff;
   } catch (error) {
     logger.error('Failed to read git diff:', error);
@@ -21,7 +21,7 @@ export function getDiff(logger) {
 
 export function commitChanges(message, logger) {
   try {
-    execSync(`git commit -m "${message.replace(/"/g, '\\"')}"`, { stdio: 'inherit' });
+    execSync(`git add -A && git commit -m "${message.replace(/"/g, '\\"')}"`, { stdio: 'inherit' });
     logger.info('Committed!');
   } catch (error) {
     logger.error('Failed to commit changes:', error);
