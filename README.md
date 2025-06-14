@@ -1,4 +1,4 @@
-# cmitly
+# cmitly (/kəˈmɪt.li/)
 
 [![npm version](https://img.shields.io/npm/v/cmitly.svg)](https://www.npmjs.com/package/cmitly) [![GitHub license](https://img.shields.io/github/license/Veloera/cmitly.svg)](https://github.com/Veloera/cmitly/blob/main/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/Veloera/cmitly.svg?style=social&label=Star)](https://github.com/Veloera/cmitly/stargazers)  
 
